@@ -57,23 +57,27 @@ function handleScroll(direction) {
 }
 
 // Scroll by mouse wheel
-window.addEventListener(
-  "wheel",
-  (e) => {
-    e.preventDefault();
-    const direction = e.deltaY > 0 ? 1 : -1;
-    handleScroll(direction);
-  },
-  { passive: false }
-);
+// Only activate custom scroll on desktop
+if (window.innerWidth > 480) {
+  // Scroll by mouse wheel
+  window.addEventListener(
+    "wheel",
+    (e) => {
+      e.preventDefault();
+      const direction = e.deltaY > 0 ? 1 : -1;
+      handleScroll(direction);
+    },
+    { passive: false }
+  );
 
-// Scroll by arrow keys
-window.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowDown") {
-    e.preventDefault();
-    handleScroll(1);
-  } else if (e.key === "ArrowUp") {
-    e.preventDefault();
-    handleScroll(-1);
-  }
-});
+  // Scroll by arrow keys
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      handleScroll(1);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      handleScroll(-1);
+    }
+  });
+}
